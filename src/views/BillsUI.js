@@ -20,10 +20,8 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  console.log(data)
   const antiChrono = (a, b) => ((a.date < b.date) ? 1 : -1)
   const dataSorted = [...data].sort(antiChrono)
-  console.log(dataSorted);
   return (dataSorted && dataSorted.length) ? dataSorted.map(bill => row(bill)).join("") : ""
 }
 
