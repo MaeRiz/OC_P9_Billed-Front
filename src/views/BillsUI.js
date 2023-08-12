@@ -20,9 +20,7 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  const antiChrono = (a, b) => ((a.date < b.date) ? 1 : -1)
-  const dataSorted = [...data].sort(antiChrono)
-  return (dataSorted && dataSorted.length) ? dataSorted.map(bill => row(bill)).join("") : ""
+  return (data && data.length) ? data.sort((a, b) => new Date(b.date) - new Date(a.date)).map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {
@@ -32,7 +30,7 @@ export default ({ data: bills, loading, error }) => {
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Justificatif</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle" data-testid="modal-title" >Justificatif</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
