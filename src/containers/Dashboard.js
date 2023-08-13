@@ -72,6 +72,11 @@ export default class {
     this.document = document
     this.onNavigate = onNavigate
     this.store = store
+    this.counterStrike = {
+      1: 'close',
+      2: 'close',
+      3: 'close'
+    }
     $('#arrow-icon1').click((e) => this.handleShowTickets(e, bills, 1))
     $('#arrow-icon2').click((e) => this.handleShowTickets(e, bills, 2))
     $('#arrow-icon3').click((e) => this.handleShowTickets(e, bills, 3))
@@ -129,20 +134,20 @@ export default class {
     this.updateBill(newBill)
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
-
+ 
   handleShowTickets(e, bills, index) {
-    if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
-    if (this.counter % 2 === 0) {
+
+    if (this.counterStrike[index] === 'close') {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
-      this.counter ++
-    } else {
+        this.counterStrike[index] = 'open'
+    } else if(this.counterStrike[index] === 'open') {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
       $(`#status-bills-container${this.index}`)
         .html("")
-      this.counter ++
+        this.counterStrike[index] = 'close'
     }
 
     filteredBills(bills, getStatus(this.index)).forEach(bill => {
