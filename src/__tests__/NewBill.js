@@ -103,7 +103,7 @@ describe("Given I am connected as an employee", () => {
         userEvent.upload(billFile, file)
         
         const checkBillFile = screen.getByTestId('file');
-        expect(checkBillFile.files[0].name).toEqual('')
+        expect(checkBillFile.value).toEqual('')
         expect(handleChangeFile).toBeCalled()
   
       })
