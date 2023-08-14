@@ -18,7 +18,7 @@ export default class NewBill {
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
-    if (["jped", "png", "jpg"].indexOf(file.name.split('.').pop()) === -1){
+    if (["jpeg", "png", "jpg"].indexOf(file.name.split('.').pop()) === -1){
       const removeFile = this.document.querySelector(`input[data-testid="file"]`);
       removeFile.value = ''
     }
